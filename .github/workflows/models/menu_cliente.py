@@ -1,0 +1,111 @@
+# -*- coding: utf-8 -*-
+
+# this file is released under public domain and you can use without limitations
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Customize your APP title, subtitle and menus here
+# ----------------------------------------------------------------------------------------------------------------------
+
+response.logo = A(B('web', SPAN(2), 'py'), XML('&trade;&nbsp;'),
+                  _class="navbar-brand", _href="http://www.web2py.com/",
+                  _id="web2py-logo")
+response.title = request.application.replace('_', ' ').title()
+response.subtitle = ''
+
+# ----------------------------------------------------------------------------------------------------------------------
+# read more at http://dev.w3.org/html5/markup/meta.name.html
+# ----------------------------------------------------------------------------------------------------------------------
+response.meta.author = myconf.get('app.author')
+response.meta.description = myconf.get('app.description')
+response.meta.keywords = myconf.get('app.keywords')
+response.meta.generator = myconf.get('app.generator')
+
+# ----------------------------------------------------------------------------------------------------------------------
+# your http://google.com/analytics id
+# ----------------------------------------------------------------------------------------------------------------------
+response.google_analytics_id = None
+
+# ----------------------------------------------------------------------------------------------------------------------
+# this is the main application menu add/remove items as required
+# ----------------------------------------------------------------------------------------------------------------------
+
+response.menu = [
+    (T('Inicio'), False, URL('default', 'index'), [])
+]
+
+# ----------------------------------------------------------------------------------------------------------------------
+# provide shortcuts for development. remove in production
+# ----------------------------------------------------------------------------------------------------------------------
+
+response.menu +=  [
+    (T('Filtrar por'), True, URL('default', 'index'), [])
+]
+
+# ----------------------------------------------------------------------------------------------------------------------
+# provide shortcuts for development. remove in production
+# ----------------------------------------------------------------------------------------------------------------------
+
+response.menu += [
+            (T('Laboratorios'), False, URL('ventas','ventas_productos'), [
+                (T('Bagó'), False, URL('ventas', 'venta_productobago'),[]),
+                (T('Bayer'), False, URL('ventas', 'venta_productoss'),[]),
+                (T('Elea'), False, URL('ventas', 'venta_productoelea'),[]),
+
+
+        ])]
+
+response.menu += [
+                (T('Presentación'), False, '#',[
+                    (T('Ampolla'), False, URL('ventas', 'Ampolla'),[]),
+                    (T('Blister'), False, URL('ventas', 'Blister'),[]),
+                    (T('Crema'), False, URL('ventas', 'Crema'),[]),
+                    (T('Efervescente'), False, URL('ventas', 'Efervescente'),[]),
+                    (T('Gotas'), False, URL('ventas', 'Gotas'),[]),
+                    (T('Grag'), False, URL('ventas', 'Grag'),[]),
+                    (T('Jarabe'), False, URL('ventas', 'Jarabe'),[]),
+                    (T('Spray'), False, URL('ventas', 'Spray'),[]),
+                    (T('Locion'), False, URL('ventas', 'Locion'),[]),
+        ])]
+
+
+response.menu += [
+    (T('Precio'), False, '#' ,[
+    (T('Menor a mayor'), False, URL('ventas', 'venta_precio'), []),
+        ])]
+
+response.menu += [
+                (T('Consultar'), False, '#' ,[
+                (T('Por nombre'), False, URL('consultas', 'producto_nombre'),[]),
+        ])]
+
+
+response.menu += [
+                (T('Alfabéticamente'), False, '#' ,[
+                (T('A-Z'), False, URL('ventas', 'venta_productosaz'),[]),
+            ])]
+
+response.menu += [
+    (T('Contáctanos'), False, URL('productos', 'contacto'), [])
+]
+
+DEVELOPMENT_MENU = True
+
+# ----------------------------------------------------------------------------------------------------------------------
+# provide shortcuts for development. remove in production
+# ----------------------------------------------------------------------------------------------------------------------
+
+def _():
+    # ------------------------------------------------------------------------------------------------------------------
+    # shortcuts
+    # ------------------------------------------------------------------------------------------------------------------
+    app = request.application
+    ctr = request.controller
+    # ------------------------------------------------------------------------------------------------------------------
+    # useful links to internal and external resources
+    # ------------------------------------------------------------------------------------------------------------------
+
+if DEVELOPMENT_MENU:
+    _()
+
+if "auth" in locals():
+    auth.wikimenu()

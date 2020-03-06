@@ -1,0 +1,128 @@
+timestamp: 2018-11-17T18:17:31.112808
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(128),
+    "last_name" CHAR(128),
+    "email" CHAR(512),
+    "password" CHAR(512),
+    "registration_key" CHAR(512),
+    "reset_password_key" CHAR(512),
+    "registration_id" CHAR(512)
+);
+success!
+timestamp: 2018-11-17T18:17:31.290287
+CREATE TABLE "auth_group"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "role" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2018-11-17T18:17:31.386316
+CREATE TABLE "auth_membership"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2018-11-17T18:17:31.487408
+CREATE TABLE "auth_permission"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  ,
+    "name" CHAR(512),
+    "table_name" CHAR(512),
+    "record_id" INTEGER
+);
+success!
+timestamp: 2018-11-17T18:17:31.591431
+CREATE TABLE "auth_event"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "time_stamp" TIMESTAMP,
+    "client_ip" CHAR(512),
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "origin" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2018-11-17T18:17:31.793218
+CREATE TABLE "auth_cas"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "created_on" TIMESTAMP,
+    "service" CHAR(512),
+    "ticket" CHAR(512),
+    "renew" CHAR(1)
+);
+success!
+timestamp: 2018-11-17T18:17:31.919146
+CREATE TABLE "clientes"(
+    "id_clientes" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "codigo_cliente" INTEGER,
+    "nombre" CHAR(512),
+    "apellido" CHAR(512),
+    "email" CHAR(512),
+    "dni" INTEGER UNIQUE,
+    "cuil" CHAR(512),
+    "genero" CHAR(512),
+    "telefono" INTEGER,
+    "direccion" CHAR(512),
+    "localidad_cliente" CHAR(512),
+    "tipo_categoria" CHAR(512),
+    "provincia" CHAR(512),
+    "pais" CHAR(512),
+    "codigo_postal" INTEGER,
+    "estado" CHAR(512),
+    "observaciones" TEXT
+);
+success!
+timestamp: 2018-11-17T18:17:32.046184
+CREATE TABLE "contacto"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "nombre" CHAR(512),
+    "apellido" CHAR(512),
+    "dni" INTEGER,
+    "codigo_postal" INTEGER,
+    "email" CHAR(512),
+    "genero" CHAR(512),
+    "telefono" INTEGER,
+    "mensaje" TEXT
+);
+success!
+timestamp: 2018-11-17T18:17:32.166670
+CREATE TABLE "vendedor"(
+    "id_vendedor" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "codigo_vendedor" INTEGER,
+    "nombre" CHAR(512),
+    "apellido" CHAR(512),
+    "email" CHAR(512),
+    "dni" INTEGER UNIQUE,
+    "cuil" CHAR(512),
+    "genero" CHAR(512),
+    "telefono" INTEGER,
+    "direccion" CHAR(512),
+    "localidad" CHAR(512),
+    "codigo_postal" INTEGER,
+    "observaciones" TEXT
+);
+success!
+timestamp: 2018-11-17T18:17:32.296170
+CREATE TABLE "productos"(
+    "id_producto" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "cantidad_prod" INTEGER,
+    "nombre" CHAR(512),
+    "laboratorio" CHAR(512),
+    "descripcion" CHAR(512),
+    "presentacion" CHAR(512),
+    "cantidad" CHAR(512),
+    "precio" DOUBLE,
+    "proveedor" CHAR(512),
+    "codigo_producto" CHAR(512),
+    "fecha_ingreso" DATE,
+    "numero_remito" INTEGER,
+    "numero_lote" INTEGER,
+    "imagen" CHAR(512),
+    "observaciones" TEXT,
+    "alicuota_iva" DOUBLE
+);
+success!
+success!
+success!
